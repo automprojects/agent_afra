@@ -571,9 +571,9 @@ def process_message(sender, message):
 
 # Handle messages from JavaScript
 def handle_messages():
-    if st.experimental_get_query_params().get("message"):
-        message = st.experimental_get_query_params()["message"][0]
-        sender = st.experimental_get_query_params()["sender"][0]
+    if st.query_params().get("message"):
+        message = st.query_params()["message"][0]
+        sender = st.query_params()["sender"][0]
         process_message(sender, message)
 
 # Handle clear history
@@ -582,14 +582,14 @@ def clear_history():
     st.rerun()
 
 # Handle message types
-if 'message_type' in st.experimental_get_query_params():
-    msg_type = st.experimental_get_query_params()['message_type'][0]
+if 'message_type' in st.query_params():
+    msg_type = st.query_params()['message_type'][0]
     
     if msg_type == "userMessage":
-        message = st.experimental_get_query_params()['message'][0]
+        message = st.query_params()['message'][0]
         process_message("user", message)
     elif msg_type == "aiResponse":
-        message = st.experimental_get_query_params()['message'][0]
+        message = st.query_params()['message'][0]
         process_message("ai", message)
     elif msg_type == "clearHistory":
         clear_history()
